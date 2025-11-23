@@ -1,3 +1,8 @@
+AUTORES:
+DAVI LOPES DE MAGALHÃES
+JOSÉ EMANUEL DE MIRANDA JUNIOR
+THIAGO LUCAS SOUZA SANTOS
+
 🎤 SoundOn - Plataforma de Prática Vocal
 
 Uma aplicação web desenvolvida para estudantes de canto e vocalistas organizarem seus estudos. O projeto simula um ambiente de prática completo (SPA), permitindo gerenciar repertório, acompanhar treinos recentes e visualizar letras de músicas para estudo.
@@ -51,6 +56,15 @@ CSS3: Layouts complexos (Grid/Flexbox), variáveis de cores e design responsivo.
 JavaScript (Vanilla): Manipulação do DOM, lógica de SPA (Single Page Application) e simulação de player de áudio.
 
 FontAwesome: Ícones para interface de usuário.
+
+Prints do FIGMA
+<img width="872" height="499" alt="image" src="https://github.com/user-attachments/assets/cea9cdb7-f147-4976-8986-ba6e25cbe8a7" />
+<img width="933" height="523" alt="image" src="https://github.com/user-attachments/assets/2be120eb-65b4-43ad-8be2-6ab6b06d5e1d" />
+<img width="833" height="574" alt="image" src="https://github.com/user-attachments/assets/c98456cc-e24c-4c1a-b27c-dcf47bcb8702" />
+
+
+
+
 
 📂 Estrutura do Projeto
 
