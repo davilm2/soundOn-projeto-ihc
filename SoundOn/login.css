@@ -1,0 +1,153 @@
+:root {
+    --bg-dark: #1e1e24; /* Fundo bem escuro */
+    --primary-orange: #ff5500;
+    --gradient-orange: linear-gradient(135deg, #ff8c00, #ff5500);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #222428;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* --- FORMAS GEOMÉTRICAS DE FUNDO --- */
+
+/* Círculo Grande Esquerda */
+.shape-circle-left {
+    position: absolute;
+    left: -150px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #ff6a00, #ff4500);
+    border-radius: 50%;
+    opacity: 0.9;
+    z-index: 0;
+}
+
+/* Listras Topo Direito */
+.shape-stripes-top {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 250px;
+    height: 250px;
+    background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 20px,
+        #ff5500 20px,
+        #ff5500 40px
+    );
+    border-radius: 50%; /* Faz ficar arredondado nas pontas como na imagem */
+    opacity: 0.8;
+}
+
+/* Seta/Triângulos Base Direita */
+.shape-arrow-bottom {
+    position: absolute;
+    bottom: -50px;
+    right: 50px;
+    width: 0; 
+    height: 0; 
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 200px solid rgba(255, 85, 0, 0.4);
+    transform: rotate(-45deg);
+}
+.shape-arrow-bottom::after {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: -100px;
+    width: 0;
+    height: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 200px solid rgba(255, 85, 0, 0.6);
+}
+
+/* --- FORMULÁRIO --- */
+.login-container {
+    width: 350px;
+    z-index: 10;
+    text-align: center;
+    color: white;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.logo i { color: #ff5500; font-size: 32px; }
+
+.input-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.input-group input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 8px 0;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-bottom-color: #ff5500;
+}
+
+.btn-entrar {
+    width: 100%;
+    padding: 12px;
+    background-color: #e65100; /* Laranja escuro */
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.btn-entrar:hover {
+    background-color: #ff6a00;
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #ccc;
+    text-decoration: none;
+}

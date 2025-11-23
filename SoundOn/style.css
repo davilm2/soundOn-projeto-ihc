@@ -1,0 +1,801 @@
+/* =========================================
+   1. RESET E CONFIGURAÇÕES GERAIS
+   ========================================= */
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+    height: 100vh;
+    overflow: hidden;
+    /* Impede seleção de texto globalmente para sensação de App nativo */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Permite selecionar texto apenas dentro de inputs */
+input {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+}
+
+/* =========================================
+   2. LAYOUT GRID PRINCIPAL
+   ========================================= */
+.app-container {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 1fr 90px;
+    grid-template-areas: 
+        "sidebar main"
+        "player player";
+    height: 100%;
+}
+
+/* =========================================
+   3. SIDEBAR (MENU ESQUERDO)
+   ========================================= */
+.sidebar {
+    grid-area: sidebar;
+    background-color: #000;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    cursor: default;
+}
+
+.logo i { color: #ff5500; }
+
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: #b3b3b3;
+    text-decoration: none;
+    padding: 8px 0;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.menu a:hover, .menu a.active {
+    color: #fff;
+}
+
+.library h3 {
+    color: #b3b3b3;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    cursor: default;
+}
+
+.library ul { list-style: none; }
+
+.library ul li {
+    color: #b3b3b3;
+    padding: 8px 0;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 14px;
+}
+
+.library ul li:hover { color: #fff; }
+
+.promo-banner button {
+    width: 100%;
+    background: linear-gradient(90deg, #ff5500, #ffcc00);
+    border: none;
+    padding: 14px;
+    border-radius: 24px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: auto;
+    font-size: 14px;
+}
+
+/* =========================================
+   4. MAIN CONTENT (CENTRO)
+   ========================================= */
+.main-content {
+    grid-area: main;
+    background: linear-gradient(to bottom, #202020 0%, #121212 40%);
+    overflow-y: auto;
+    padding: 20px 32px;
+}
+
+/* Classe utilitária para esconder telas */
+.hidden { display: none !important; }
+
+/* --- TOPO (Busca e Perfil) --- */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.nav-arrows button {
+    background: rgba(0,0,0,0.7);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.search-bar {
+    background: #2a2a2a;
+    padding: 10px 16px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    width: 360px;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    color: white;
+    margin-left: 10px;
+    outline: none;
+    width: 100%;
+}
+
+/* --- Container e Dropdown de Perfil --- */
+.user-profile-container {
+    position: relative;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    background: rgba(0,0,0,0.7);
+    padding: 4px 12px 4px 4px;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: 0.2s;
+    user-select: none;
+}
+
+.user-profile:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.user-profile img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+/* Menu Suspenso (Dropdown) */
+.profile-dropdown {
+    position: absolute;
+    top: 45px; /* Logo abaixo do botão */
+    right: 0;
+    background-color: #282828;
+    border-radius: 4px;
+    width: 150px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    z-index: 100;
+    padding: 5px;
+    border: 1px solid #333;
+}
+
+.profile-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ddd;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 2px;
+    transition: 0.2s;
+}
+
+.profile-dropdown a:hover {
+    background-color: #3e3e3e;
+    color: #fff;
+}
+
+/* =========================================
+   5. TELA HOME (Recentes & Amigos)
+   ========================================= */
+.content-section h2 { margin-bottom: 24px; cursor: default; }
+
+.recentes-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Lado Esquerdo: Grid de Cards */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 180px);
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+.card {
+    background-color: #181818;
+    padding: 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.card:hover { background-color: #282828; }
+
+.card img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+.card h4 {
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card p {
+    font-size: 13px;
+    color: #b3b3b3;
+}
+
+/* Lado Direito: Lista de Músicas */
+.song-list {
+    width: 100%;
+    max-width: 500px;
+    margin-left: 60px;
+}
+
+.list-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    padding: 0 12px 10px 12px;
+    border-bottom: 1px solid #282828;
+    margin-bottom: 10px;
+    color: #b3b3b3;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: default;
+}
+
+.song-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 4px;
+    transition: 0.2s;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.song-row:hover { background-color: rgba(255,255,255,0.1); }
+
+.song-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+}
+
+.artist-name, .album-name {
+    color: #b3b3b3;
+    font-size: 13px;
+}
+
+.song-row:hover .artist-name, 
+.song-row:hover .album-name { color: #fff; }
+
+/* --- Amigos --- */
+.friends-activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+.friends-nav {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.friends-nav button {
+    background: #2a2a2a;
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.friends-nav button:hover { background: #3a3a3a; }
+
+.friends-nav .buscar-amigos-btn {
+    width: auto;
+    padding: 0 16px;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: 13px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+.friends-list-wrapper {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.friend-activity-item {
+    background-color: #1a1a1a;
+    padding: 16px;
+    border-radius: 8px;
+    min-width: 230px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: background 0.3s;
+    cursor: pointer;
+}
+
+.friend-activity-item:hover { background-color: #282828; }
+
+.friend-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.friend-info img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.friend-info i, .friend-info .time-ago {
+    margin-left: auto;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+
+.friend-info i.fa-volume-high { color: #ffbf00; }
+
+.listening-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    background-color: rgba(255,255,255,0.03);
+    border-radius: 6px;
+}
+
+.listening-info img {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.track-details {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.track-name {
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-artist {
+    font-size: 11px;
+    color: #b3b3b3;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* =========================================
+   6. TELA MÚSICAS CURTIDAS (LIKED)
+   ========================================= */
+
+/* Banner Laranja */
+.liked-banner {
+    background: linear-gradient(to right, #ff4b1f, #ff9068);
+    height: 250px;
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-end;
+    padding: 24px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+}
+
+.banner-content {
+    display: flex;
+    align-items: flex-end;
+    gap: 24px;
+    z-index: 2;
+}
+
+.big-heart {
+    font-size: 64px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.banner-text h1 {
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.user-stats {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.user-stats img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+/* Toolbar */
+.playlist-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #b3b3b3;
+    font-size: 14px;
+    cursor: default;
+}
+
+.download-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #555;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider { background-color: #ff5500; }
+input:checked + .slider:before { transform: translateX(20px); }
+
+/* Tabela Playlist */
+.playlist-table { display: flex; flex-direction: column; }
+
+.table-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 0.5fr; /* Coluna extra para ícones */
+    color: #b3b3b3;
+    border-bottom: 1px solid #333;
+    padding: 10px 16px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    cursor: default;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 0.5fr;
+    padding: 12px 16px;
+    color: #ccc;
+    font-size: 14px;
+    align-items: center;
+    border-radius: 4px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.table-row:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: #fff;
+}
+
+.col-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.col-title .fa-heart { color: #ff5500; }
+
+/* Linha Ativa (Música Tocando) */
+.active-row {
+    background-color: rgba(255, 85, 0, 0.15) !important;
+}
+
+.active-row .col-title span {
+    color: #ff5500 !important;
+}
+
+.active-row .col-artist, .active-row .col-album {
+    color: #fff;
+}
+
+.orange-text { color: #ff5500 !important; }
+.orange-icon { color: #ff5500; font-size: 18px; margin-right: -5px; }
+
+/* --- ÍCONE DE LETRA --- */
+.lyrics-btn {
+    color: #b3b3b3;
+    margin-left: 10px;
+    transition: color 0.2s;
+    cursor: pointer;
+}
+.lyrics-btn:hover {
+    color: #ff5500;
+    transform: scale(1.1);
+}
+
+/* --- POPUP DE LETRAS --- */
+#lyrics-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* Acima de tudo */
+    backdrop-filter: blur(5px);
+}
+
+.lyrics-modal {
+    background-color: #1e1e1e;
+    width: 500px;
+    max-width: 90%;
+    height: 70vh;
+    border-radius: 12px;
+    padding: 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid #333;
+}
+
+#close-lyrics {
+    position: absolute;
+    top: 15px; right: 15px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#lyrics-title-modal {
+    color: #ff5500;
+    margin-bottom: 5px;
+    font-size: 24px;
+}
+
+#lyrics-artist-modal {
+    color: #b3b3b3;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+#lyrics-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    color: #ddd;
+    font-size: 16px;
+    line-height: 1.6;
+    white-space: pre-line;
+    padding-right: 10px;
+}
+
+/* =========================================
+   7. PLAYER BAR (RODAPÉ)
+   ========================================= */
+.player-bar {
+    grid-area: player;
+    background-color: #181818;
+    border-top: 1px solid #282828;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 100;
+    cursor: default;
+}
+
+.track-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 30%;
+    min-width: 180px;
+}
+
+.track-info img {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.track-info h4 { font-size: 14px; margin-bottom: 2px; }
+.track-info small { font-size: 11px; color: #b3b3b3; }
+
+.player-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+}
+
+.player-controls .buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.player-controls button {
+    background: none;
+    border: none;
+    color: #b3b3b3;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.player-controls button:hover { color: #fff; }
+
+.play-pause-btn { color: #fff !important; font-size: 34px !important; }
+
+.progress-container {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    align-items: center;
+    font-size: 11px;
+    color: #b3b3b3;
+}
+
+.progress-bar {
+    height: 4px;
+    background: #535353;
+    width: 100%;
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #fff;
+    width: 0%;
+    border-radius: 2px;
+}
+
+.progress-bar:hover .progress-fill { background-color: #ff5500; }
+
+.volume-controls {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    color: #b3b3b3;
+}
+
+/* =========================================
+   8. ESTILOS FUNCIONAIS (LIKES / CONTROLES)
+   ========================================= */
+.liked, .active-control {
+    color: #ff5500 !important;
+}
+
+.fa-heart, .fa-shuffle, .fa-repeat {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.fa-heart:active, .fa-shuffle:active, .fa-repeat:active {
+    transform: scale(1.2);
+}

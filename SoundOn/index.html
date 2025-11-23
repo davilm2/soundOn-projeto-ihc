@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoundOn Web Player</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-play-circle"></i> SoundOn
+            </div>
+            
+            <nav class="menu">
+                <a href="#" id="link-home" class="active"><i class="fa-solid fa-home"></i> Página Inicial</a>
+                <a href="#"><i class="fa-solid fa-compass"></i> Explorar</a>
+                <a href="#" id="link-liked"><i class="fa-solid fa-heart"></i> Músicas Curtidas</a>
+            </nav>
+
+            <div class="library">
+                <h3>Biblioteca</h3>
+                <ul>
+                    <li>Para Você</li><li>Recentes</li><li>Albums</li>
+                    <li>Artistas</li><li>Aprendizado</li><li>Prática vocal</li>
+                </ul>
+            </div>
+            <div class="promo-banner"><button>Cantar é viver</button></div>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="top-bar">
+                <div class="nav-arrows">
+                    <button><i class="fa-solid fa-chevron-left"></i></button>
+                    <button><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+                <div class="search-bar">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" placeholder="Buscar">
+                </div>
+                
+                <div class="user-profile-container">
+                    <div class="user-profile" id="user-profile-btn">
+                        <img src="assets/usuario.png" alt="User"> 
+                        <span>Usuário</span>
+                        <i class="fa-solid fa-caret-down" style="font-size: 12px; margin-left: 5px;"></i>
+                    </div>
+                    
+                    <div class="profile-dropdown hidden" id="profile-dropdown">
+                        <a href="#" id="logout-btn">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- TELA 1: HOME -->
+            <div id="view-home">
+                <section class="content-section">
+                    <h2>Recentes</h2>
+                    <div class="recentes-wrapper">
+                        <div class="cards-grid">
+                            <div class="card">
+                               
+                                <img src="assets/careless.png" alt="Album Neffex">
+                                <h4>Careless: The Collection</h4><p>NEFFEX</p>
+                                <i class="fa-regular fa-heart"></i>
+                            </div>
+                            <div class="card">
+                                <img src="assets/coldplay.png" alt="Album">
+                                <h4>X&Y</h4><p>Coldplay</p>
+                                <i class="fa-regular fa-heart"></i>
+                            </div>
+                        </div>
+                        <div class="song-list">
+                            <div class="list-header"><span>MÚSICA</span><span>ARTISTA</span><span>ALBUM</span></div>
+                            <div class="song-row">
+                                <div class="song-info"><i class="fa-solid fa-heart liked"></i><span>TURN IT UP</span></div>
+                                <span class="artist-name">TWICE</span><span class="album-name">FANCY YOU</span>
+                            </div>
+                            <div class="song-row">
+                                <div class="song-info"><i class="fa-solid fa-heart liked"></i><span>ECHO</span></div>
+                                <span class="artist-name">STARSET</span><span class="album-name">DIVISIONS</span>
+                            </div>
+                             <div class="song-row">
+                                <div class="song-info"><i class="fa-regular fa-heart"></i><span>Rock It for Me</span></div>
+                                <span class="artist-name">Caravan Palace</span><span class="album-name">Panic</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="friends-activity">
+                    <div class="friends-activity-header">
+                        <h2>Atividade dos seus amigos</h2>
+                        <div class="friends-nav">
+                            <button class="buscar-amigos-btn">Buscar Amigos</button>
+                            <button><i class="fa-solid fa-chevron-left"></i></button>
+                            <button><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="friends-list-wrapper">
+                        <div class="friend-activity-item">
+                            <div class="friend-info"><img src="assets/thiago.png"><span>Thiago</span><i class="fa-solid fa-volume-high"></i></div>
+                            <div class="listening-info"><img src="assets/lonedigger.png"><div class="track-details"><p class="track-name">Lone Digger</p><p class="track-artist">Caravan Palace</p></div></div>
+                        </div>
+                        <div class="friend-activity-item">
+                            <div class="friend-info"><img src="assets/victor.png"><span>Victor Bruno</span><i class="fa-solid fa-volume-high"></i></div>
+                            <div class="listening-info">
+                                
+                                <img src="assets/pearljam.png" alt="Capa">
+                                <div class="track-details"><p class="track-name">Alive</p><p class="track-artist">Pearl Jam</p></div>
+                            </div>
+                        </div>
+                        <div class="friend-activity-item">
+                            <div class="friend-info"><img src="assets/ana.png"><span>Ana</span><span class="time-ago">32m</span></div>
+                            <div class="listening-info"><img src="assets/swerve arizona.png"><div class="track-details"><p class="track-name">Swerve</p><p class="track-artist">Arizona Zervas</p></div></div>
+                        </div>
+                        <div class="friend-activity-item">
+                            <div class="friend-info"><img src="assets/lucas.png"><span>Lucas</span><span class="time-ago">1h</span></div>
+                            <div class="listening-info">
+                                
+                                <img src="assets/galantis.png" alt="Capa">
+                                <div class="track-details"><p class="track-name">I Find U</p><p class="track-artist">Passion Pit, Galantis</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TELA 2: MÚSICAS CURTIDAS -->
+            <div id="view-liked" class="hidden">
+                <div class="liked-banner">
+                    <div class="banner-content">
+                        <i class="fa-solid fa-heart big-heart"></i>
+                        <div class="banner-text">
+                            <h1>Músicas Curtidas</h1>
+                            <div class="user-stats"><img src="assets/usuario.png"><span>Usuário</span> • <span>1158 Músicas</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="playlist-toolbar">
+                    <div class="filter-icon"><i class="fa-solid fa-magnifying-glass"></i> Filtro</div>
+                    <div class="download-toggle">
+                        <span>BAIXAR</span>
+                        <label class="switch"><input type="checkbox"><span class="slider round"></span></label>
+                    </div>
+                </div>
+
+                <div class="playlist-table">
+                    <div class="table-header"><span>TÍTULO</span><span>ARTISTA</span><span>ÁLBUM</span><span><i class="fa-regular fa-calendar"></i></span></div>
+                    
+                    
+                    <div class="table-row" data-title="Good Enough" data-artist="MeiaUm" data-image="assets/galantis.png" 
+                         data-lyrics="Eu tentei de tudo, mas não foi o bastante...<br>Às vezes a vida nos leva pra longe.<br>Mas eu sei que um dia a gente se encontra.<br>Good enough, is it good enough?">
+                        <div class="col-title">
+                            <i class="fa-solid fa-heart liked"></i>
+                            <span>Good Enough</span>
+                            <i class="fa-solid fa-microphone-lines lyrics-btn" title="Ver Letra"></i>
+                        </div>
+                        <div class="col-artist">MeiaUm</div><div class="col-album">Good Enough</div><div class="col-date">2020-01-25</div>
+                    </div>
+
+                    
+                    <div class="table-row" data-title="TURN IT UP" data-artist="TWICE" data-image="assets/careless.png"
+                         data-lyrics="Turn it up! Loud!<br>Sori jiller!<br>Nayeireun eobseo like ooh ahh.<br>Fancy you, fancy you!">
+                        <div class="col-title">
+                            <i class="fa-solid fa-heart liked"></i>
+                            <span>TURN IT UP</span>
+                            <i class="fa-solid fa-microphone-lines lyrics-btn" title="Ver Letra"></i>
+                        </div>
+                        <div class="col-artist">TWICE</div><div class="col-album">FANCY YOU</div><div class="col-date">2020-01-25</div>
+                    </div>
+
+                    <div class="table-row" data-title="ECHO" data-artist="STARSET" data-image="assets/lonedigger.png"
+                         data-lyrics="I used to be the one who held you when you fell.<br>Yeah, yeah, yeah.<br>And now I'm just an echo.">
+                        <div class="col-title">
+                            <i class="fa-solid fa-heart liked"></i>
+                            <span>ECHO</span>
+                            <i class="fa-solid fa-microphone-lines lyrics-btn" title="Ver Letra"></i>
+                        </div>
+                        <div class="col-artist">STARSET</div><div class="col-album">DIVISIONS</div><div class="col-date">2020-01-20</div>
+                    </div>
+
+                    <div class="table-row active-row" data-title="Square One" data-artist="Coldplay" data-image="assets/coldplay.png"
+                         data-lyrics="Discovering the world...<br>Square One.<br>The hardest part is letting go, not taking part.<br>Is the hardest part.">
+                        <div class="col-title">
+                            <i class="fa-solid fa-chart-simple orange-icon" id="playing-icon"></i>
+                            <i class="fa-solid fa-heart liked"></i>
+                            <span class="orange-text">Square One</span>
+                            <i class="fa-solid fa-microphone-lines lyrics-btn" title="Ver Letra"></i>
+                        </div>
+                        <div class="col-artist">Coldplay</div><div class="col-album">X&Y</div><div class="col-date">2020-01-08</div>
+                    </div>
+
+                   
+                    <div class="table-row" data-title="Leave the City" data-artist="Twenty One Pilots" data-image="assets/pearljam.png"
+                         data-lyrics="I'm tired of tending to this fire.<br>I've used up all I've collected.<br>I have singed my hands.<br>It's glowing.">
+                        <div class="col-title">
+                            <i class="fa-solid fa-heart liked"></i>
+                            <span>Leave the City</span>
+                            <i class="fa-solid fa-microphone-lines lyrics-btn" title="Ver Letra"></i>
+                        </div>
+                        <div class="col-artist">Twenty One Pilots</div><div class="col-album">Trench</div><div class="col-date">2019-10-05</div>
+                    </div>
+                    
+                    <div class="table-row" data-title="Swerve" data-artist="Arizona Zervas" data-image="assets/swerve arizona.png"
+                         data-lyrics="Swerve, swerve, swerve.<br>Keep it 100.<br>Yeah yeah yeah.">
+                        <div class="col-title">
+                            <i class="fa-solid fa-heart liked"></i>
+                            <span>Swerve</span>
+                            <i class="fa-solid fa-microphone-lines lyrics-btn" title="Ver Letra"></i>
+                        </div>
+                        <div class="col-artist">Arizona Zervas</div><div class="col-album">Swerve</div><div class="col-date">2019-09-12</div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="player-bar">
+            <div class="track-info">
+                <img src="assets/coldplay.png" alt="Capa Album" id="player-img">
+                <div>
+                    <h4 id="player-title">Square One</h4>
+                    <small id="player-artist">Coldplay</small>
+                </div>
+                <i class="fa-regular fa-heart"></i>
+            </div>
+            <div class="player-controls">
+                <div class="buttons">
+                    <button><i class="fa-solid fa-shuffle"></i></button>
+                    <button><i class="fa-solid fa-backward-step"></i></button>
+                    <button class="play-pause-btn"><i class="fa-solid fa-circle-play"></i></button>
+                    <button><i class="fa-solid fa-forward-step"></i></button>
+                    <button><i class="fa-solid fa-repeat"></i></button>
+                </div>
+                <div class="progress-container">
+                    <span id="current-time">0:00</span>
+                    <div class="progress-bar" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+                    <span id="total-time">0:00</span>
+                </div>
+            </div>
+            <div class="volume-controls"><i class="fa-solid fa-volume-high"></i><input type="range"></div>
+        </footer>
+
+        <!-- POPUP DE LETRA DA MÚSICA -->
+        <div id="lyrics-overlay" class="hidden">
+            <div class="lyrics-modal">
+                <button id="close-lyrics"><i class="fa-solid fa-xmark"></i></button>
+                <h2 id="lyrics-title-modal">Título</h2>
+                <h3 id="lyrics-artist-modal">Artista</h3>
+                <div id="lyrics-body">
+                    <!-- A letra será inserida aqui pelo JS -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
